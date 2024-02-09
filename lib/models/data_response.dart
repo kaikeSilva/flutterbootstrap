@@ -1,6 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:observable_flutter/models/data_response.dart';
-
 part 'data_response.freezed.dart';
 
 typedef JsonToT<T> = T Function(Map<String, dynamic>);
@@ -11,16 +9,15 @@ class DataResponse<T> with _$DataResponse<T> {
 
   const factory DataResponse({
     required T? data,
-    required String? errorMessage,
+    required String? message,
     required int? statusCode,
   }) = _DataResponse<T>;
 
-  // Custom fromJson method
   factory DataResponse.fromJson(
       Map<String, dynamic> json, JsonToT<T> fromJsonT) {
     return DataResponse<T>(
       data: fromJsonT(json['data']),
-      errorMessage: json['errorMessage'] as String?,
+      message: json['message'] as String?,
       statusCode: json['statusCode'] as int?,
     );
   }

@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:isar/isar.dart';
+import 'package:observable_flutter/models/data_response.dart';
 import 'package:observable_flutter/models/date.dart';
+import 'package:observable_flutter/services/data_access_interface.dart';
 import 'package:path_provider/path_provider.dart';
 
-class LocalDatabaseService<T> {
+class LocalDatabaseService<T> implements DataAccessInterface<T> {
   late final Isar isar;
   late final Directory dir;
 
@@ -20,43 +22,54 @@ class LocalDatabaseService<T> {
     );
   }
 
-  // Future<ApiResponse<List<T>>> getAll(List<T> Function(List<dynamic>) fromIsar) async {
-  //   try {
-  //     final result = await isar.collection<T>(collectionName).where().findAll();
-  //     final data = fromIsar(result);
-  //     return ApiResponse<List<T>>(data: data, statusCode: 200, errorMessage: null);
-  //   } catch (e) {
-  //     return ApiResponse<List<T>>(data: [], statusCode: 500, errorMessage: e.toString());
-  //   }
-  // }
+  @override
+  Future<DataResponse<T?>> delete(String route, String id) async {
+    final collection = isar.collection<T>();
+    final intId = int.parse(id);
+    return await collection.delete(intId).then((value) {
+      return const DataResponse(data: null, statusCode: 200, message: null);
+    });
+  }
 
-  // Future<ApiResponse<T?>> insert(String collectionName, dynamic item,
-  //     T Function(Map<String, dynamic>) fromIsar) async {
-  //   await isar.writeTxn(() async {
-  //     await isar.collection<T>().put(item);
-  //   });
-  //   return ApiResponse<T?>(data: item, statusCode: 200, errorMessage: null);
-  // }
+  @override
+  Future<DataResponse<T?>> insert(String url, T body,
+      {T? Function(Map<String, dynamic> p1)? fromJsonT,
+      Map<String, dynamic>? Function(T p1)? toJson}) async {
+    final collection = isar.collection<T>();
+    return await collection.put(body).then((value) async {
+      final createdObject = await collection.get(value);
+      return DataResponse(data: createdObject, statusCode: 200, message: null);
+    });
+  }
 
-  // Future<ApiResponse<T?>> update(dynamic item, T Function(Map<String, dynamic>) fromIsar) async {
-  //   try {
-  //     await isar.writeTxn(() async {
-  //       await isar.collection<T>(collectionName).put(item);
-  //     });
-  //     return ApiResponse<T?>(data: item, statusCode: 200, errorMessage: null);
-  //   } catch (e) {
-  //     return ApiResponse<T?>(data: null, statusCode: 500, errorMessage: e.toString());
-  //   }
-  // }
+  @override
+  Future<DataResponse<List<T>>> list(
+      String url, List<T> Function(dynamic p1) fromJsonT) {
+    final collection = isar.collection<T>();
+    return collection.where().findAll().then((value) {
+      return DataResponse(data: value, statusCode: 200, message: null);
+    });
+  }
 
-  // Future<ApiResponse<void>> delete(int id) async {
-  //   try {
-  //     await isar.writeTxn(() async {
-  //       await isar.collection<T>(collectionName).delete(id);
-  //     });
-  //     return ApiResponse<void>(statusCode: 200, errorMessage: null);
-  //   } catch (e) {
-  //     return ApiResponse<void>(statusCode: 500, errorMessage: e.toString());
-  //   }
-  // }
+  @override
+  Future<DataResponse<T>> show(
+      String url, String id, T Function(Map<String, dynamic> p1) fromJsonT) {
+    final collection = isar.collection<T>();
+    final intId = int.parse(id);
+    return collection.get(intId).then((value) {
+      return DataResponse(data: value, statusCode: 200, message: null);
+    });
+  }
+
+  @override
+  Future<DataResponse<T>> update(String url, String id, T body,
+      {T? Function(Map<String, dynamic> p1)? fromJsonT,
+      Map<String, dynamic>? Function(T p1)? toJson}) {
+    final collection = isar.collection<T>();
+    final intId = int.parse(id);
+    return collection.put(body).then((value) async {
+      final updatedObject = await collection.get(intId);
+      return DataResponse(data: updatedObject, statusCode: 200, message: null);
+    });
+  }
 }

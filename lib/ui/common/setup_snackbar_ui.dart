@@ -3,7 +3,7 @@ import 'package:observable_flutter/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 /// The type of snackbar to show
-enum SnackbarType { error, greenAndRed }
+enum SnackbarType { error, success }
 
 void setupSnackbarUi() {
   final service = locator<SnackbarService>();
@@ -21,12 +21,12 @@ void setupSnackbarUi() {
   );
 
   service.registerCustomSnackbarConfig(
-    variant: SnackbarType.greenAndRed,
+    variant: SnackbarType.success,
     config: SnackbarConfig(
-      backgroundColor: Colors.white,
-      titleColor: Colors.green,
-      messageColor: Colors.red,
+      backgroundColor: Colors.green,
+      textColor: Colors.white,
       borderRadius: 1,
+      dismissDirection: DismissDirection.horizontal,
       snackPosition: SnackPosition.TOP,
     ),
   );

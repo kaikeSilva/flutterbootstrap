@@ -3,14 +3,14 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 class AuthUser {
   final String access;
   final String refresh;
-  final String? email;
+  final String? username;
   final String? displayName;
   final String? password;
 
   AuthUser({
     required this.access,
     required this.refresh,
-    this.email = '',
+    this.username = '',
     this.displayName = '',
     this.password = '',
   });
@@ -20,7 +20,7 @@ class AuthUser {
     return AuthUser(
       access: json['access'],
       refresh: json['refresh'],
-      email: json['email'] ?? '',
+      username: json['email'] ?? '',
       displayName: json['displayName'] ?? jwt['username'] ?? '',
     );
   }
@@ -29,7 +29,8 @@ class AuthUser {
     return {
       'access': access,
       'refresh': refresh,
-      'email': email,
+      'usename': username,
+      'password': password,
       'displayName': displayName,
     };
   }

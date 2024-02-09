@@ -3,14 +3,15 @@ import 'package:http/http.dart' as http;
 import 'package:observable_flutter/app/app.locator.dart';
 import 'package:observable_flutter/exceptions/data_exception.dart';
 import 'package:observable_flutter/models/data_response.dart';
+import 'package:observable_flutter/services/data_access_interface.dart';
 import 'package:observable_flutter/services/local_storage_service.dart';
 
 // DataService agora é genérico com o tipo T
-class ApiService<T> {
+class ApiService<T> implements DataAccessInterface<T> {
   final storage = locator<LocalStorageService>();
-  final String baseUrl =
-      "https://8883-2001-12f0-c0b-81d-2013-b2b8-7e9-1e3e.ngrok-free.app";
+  final String baseUrl = "https://97ca-200-137-195-149.ngrok-free.app";
 
+  @override
   Future<DataResponse<T?>> insert(String url, T body,
       {T? Function(Map<String, dynamic>)? fromJsonT,
       Map<String, dynamic>? Function(T)? toJson}) async {
@@ -21,7 +22,7 @@ class ApiService<T> {
         "Content-Type": "application/json",
         "Authorization": "Bearer $authtoken"
       },
-      body: toJson != null ? toJson(body) : jsonEncode({}),
+      body: toJson != null ? jsonEncode(toJson(body)) : jsonEncode({}),
     );
 
     if (response.statusCode == 200) {
@@ -29,7 +30,7 @@ class ApiService<T> {
       if (json.isEmpty) {
         return DataResponse(
             data: null,
-            errorMessage: "Error: ${response.statusCode}",
+            message: "Error: ${response.statusCode}",
             statusCode: response.statusCode);
       }
 
@@ -38,16 +39,17 @@ class ApiService<T> {
       if (items == null) {
         return DataResponse(
             data: null,
-            errorMessage: "Error: ${response.statusCode}",
+            message: "Error: ${response.statusCode}",
             statusCode: response.statusCode);
       }
       T? data = fromJsonT != null ? fromJsonT(items) : null;
-      return DataResponse(data: data, statusCode: 200, errorMessage: null);
+      return DataResponse(data: data, statusCode: 200, message: null);
     } else {
       throw DataException(response.statusCode, "Error: ${response.statusCode}");
     }
   }
 
+  @override
   Future<DataResponse<List<T>>> list(
       String url, List<T> Function(dynamic) fromJsonT) async {
     final finalUrl = baseUrl + url;
@@ -59,13 +61,13 @@ class ApiService<T> {
       final decoded = jsonDecode(json);
       Iterable items = decoded["data"];
       List<T> data = fromJsonT(items);
-      return DataResponse<List<T>>(
-          data: data, statusCode: 200, errorMessage: null);
+      return DataResponse<List<T>>(data: data, statusCode: 200, message: null);
     } else {
       throw DataException(response.statusCode, "Error: ${response.statusCode}");
     }
   }
 
+  @override
   Future<DataResponse<T>> update(String url, String id, T body,
       {T? Function(Map<String, dynamic>)? fromJsonT,
       Map<String, dynamic>? Function(T)? toJson}) async {
@@ -79,24 +81,25 @@ class ApiService<T> {
       final json = response.body;
       final decoded = jsonDecode(json);
       final data = fromJsonT != null ? fromJsonT(decoded) : null;
-      return DataResponse(data: data, statusCode: 200, errorMessage: null);
+      return DataResponse(data: data, statusCode: 200, message: null);
     } else {
       throw DataException(response.statusCode, "Error: ${response.statusCode}");
     }
   }
 
+  @override
   Future<DataResponse<T?>> delete(String url, String id) async {
     final response = await http.delete(Uri.parse(baseUrl + id + url),
         headers: {"Content-Type": "application/json"});
 
     if (response.statusCode == 200) {
-      return const DataResponse(
-          data: null, statusCode: 200, errorMessage: null);
+      return const DataResponse(data: null, statusCode: 200, message: null);
     } else {
       throw DataException(response.statusCode, "Error: ${response.statusCode}");
     }
   }
 
+  @override
   Future<DataResponse<T>> show(
       String url, String id, T Function(Map<String, dynamic>) fromJsonT) async {
     final response = await http.get(Uri.parse(baseUrl + id + url),
@@ -106,7 +109,7 @@ class ApiService<T> {
       final json = response.body;
       final decoded = jsonDecode(json);
       final data = fromJsonT(decoded);
-      return DataResponse(data: data, statusCode: 200, errorMessage: null);
+      return DataResponse(data: data, statusCode: 200, message: null);
     } else {
       throw DataException(response.statusCode, "Error: ${response.statusCode}");
     }

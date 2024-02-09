@@ -13,6 +13,8 @@ import 'package:observable_flutter/services/local_storage_service.dart';
 import 'package:observable_flutter/ui/views/base_app_bar/base_app_bar_view.dart';
 import 'package:observable_flutter/services/data_access_service.dart';
 import 'package:observable_flutter/services/local_database_service.dart';
+import 'package:observable_flutter/services/connection_service.dart';
+import 'package:observable_flutter/services/data_synchronization_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -35,6 +37,8 @@ import 'package:observable_flutter/services/local_database_service.dart';
     LazySingleton(classType: SnackbarService),
     LazySingleton(classType: DataAccessService),
     LazySingleton(classType: LocalDatabaseService),
+    LazySingleton(classType: ConnectionService),
+    LazySingleton(classType: DataSynchronizationService),
 // @stacked-service
   ],
   bottomsheets: [

@@ -47,7 +47,7 @@ class AuthenticationService extends ApiService<AuthUser> {
     final currentUser = AuthUser(
       access: "",
       refresh: "",
-      email: email,
+      username: email,
       password: password,
     );
     var user = await insert(_tokenUrl, currentUser,

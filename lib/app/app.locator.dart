@@ -14,7 +14,9 @@ import 'package:stacked_shared/stacked_shared.dart';
 
 import '../services/api_service.dart';
 import '../services/authentication_service.dart';
+import '../services/connection_service.dart';
 import '../services/data_access_service.dart';
+import '../services/data_synchronization_service.dart';
 import '../services/date_service.dart';
 import '../services/local_database_service.dart';
 import '../services/local_storage_service.dart';
@@ -40,4 +42,6 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => SnackbarService());
   locator.registerLazySingleton(() => DataAccessService<dynamic>());
   locator.registerLazySingleton(() => LocalDatabaseService<dynamic>());
+  locator.registerLazySingleton(() => ConnectionService());
+  locator.registerLazySingleton(() => DataSynchronizationService());
 }

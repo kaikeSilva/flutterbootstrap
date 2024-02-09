@@ -7,6 +7,8 @@ import 'package:observable_flutter/services/authentication_service.dart';
 import 'package:observable_flutter/services/local_storage_service.dart';
 import 'package:observable_flutter/services/data_access_service.dart';
 import 'package:observable_flutter/services/local_database_service.dart';
+import 'package:observable_flutter/services/connection_service.dart';
+import 'package:observable_flutter/services/data_synchronization_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -20,6 +22,9 @@ import 'test_helpers.mocks.dart';
   MockSpec<LocalStorageService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<DataAccessService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<LocalDatabaseService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<ConnectionService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<DataSynchronizationService>(
+      onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -31,6 +36,8 @@ void registerServices() {
   getAndRegisterLocalStorageService();
   getAndRegisterDataAccessService();
   getAndRegisterLocalDatabaseService();
+  getAndRegisterConnectionService();
+  getAndRegisterDataSynchronizationService();
 // @stacked-mock-register
 }
 
@@ -116,6 +123,20 @@ MockLocalDatabaseService getAndRegisterLocalDatabaseService() {
   _removeRegistrationIfExists<LocalDatabaseService>();
   final service = MockLocalDatabaseService();
   locator.registerSingleton<LocalDatabaseService>(service);
+  return service;
+}
+
+MockConnectionService getAndRegisterConnectionService() {
+  _removeRegistrationIfExists<ConnectionService>();
+  final service = MockConnectionService();
+  locator.registerSingleton<ConnectionService>(service);
+  return service;
+}
+
+MockDataSynchronizationService getAndRegisterDataSynchronizationService() {
+  _removeRegistrationIfExists<DataSynchronizationService>();
+  final service = MockDataSynchronizationService();
+  locator.registerSingleton<DataSynchronizationService>(service);
   return service;
 }
 // @stacked-mock-create

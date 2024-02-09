@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$DataResponse<T> {
   T? get data => throw _privateConstructorUsedError;
-  String? get errorMessage => throw _privateConstructorUsedError;
+  String? get message => throw _privateConstructorUsedError;
   int? get statusCode => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +31,7 @@ abstract class $DataResponseCopyWith<T, $Res> {
           DataResponse<T> value, $Res Function(DataResponse<T>) then) =
       _$DataResponseCopyWithImpl<T, $Res, DataResponse<T>>;
   @useResult
-  $Res call({T? data, String? errorMessage, int? statusCode});
+  $Res call({T? data, String? message, int? statusCode});
 }
 
 /// @nodoc
@@ -48,7 +48,7 @@ class _$DataResponseCopyWithImpl<T, $Res, $Val extends DataResponse<T>>
   @override
   $Res call({
     Object? data = freezed,
-    Object? errorMessage = freezed,
+    Object? message = freezed,
     Object? statusCode = freezed,
   }) {
     return _then(_value.copyWith(
@@ -56,9 +56,9 @@ class _$DataResponseCopyWithImpl<T, $Res, $Val extends DataResponse<T>>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as T?,
-      errorMessage: freezed == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String?,
       statusCode: freezed == statusCode
           ? _value.statusCode
@@ -76,7 +76,7 @@ abstract class _$$DataResponseImplCopyWith<T, $Res>
       __$$DataResponseImplCopyWithImpl<T, $Res>;
   @override
   @useResult
-  $Res call({T? data, String? errorMessage, int? statusCode});
+  $Res call({T? data, String? message, int? statusCode});
 }
 
 /// @nodoc
@@ -91,7 +91,7 @@ class __$$DataResponseImplCopyWithImpl<T, $Res>
   @override
   $Res call({
     Object? data = freezed,
-    Object? errorMessage = freezed,
+    Object? message = freezed,
     Object? statusCode = freezed,
   }) {
     return _then(_$DataResponseImpl<T>(
@@ -99,9 +99,9 @@ class __$$DataResponseImplCopyWithImpl<T, $Res>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as T?,
-      errorMessage: freezed == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String?,
       statusCode: freezed == statusCode
           ? _value.statusCode
@@ -115,21 +115,19 @@ class __$$DataResponseImplCopyWithImpl<T, $Res>
 
 class _$DataResponseImpl<T> extends _DataResponse<T> {
   const _$DataResponseImpl(
-      {required this.data,
-      required this.errorMessage,
-      required this.statusCode})
+      {required this.data, required this.message, required this.statusCode})
       : super._();
 
   @override
   final T? data;
   @override
-  final String? errorMessage;
+  final String? message;
   @override
   final int? statusCode;
 
   @override
   String toString() {
-    return 'DataResponse<$T>(data: $data, errorMessage: $errorMessage, statusCode: $statusCode)';
+    return 'DataResponse<$T>(data: $data, message: $message, statusCode: $statusCode)';
   }
 
   @override
@@ -138,15 +136,14 @@ class _$DataResponseImpl<T> extends _DataResponse<T> {
         (other.runtimeType == runtimeType &&
             other is _$DataResponseImpl<T> &&
             const DeepCollectionEquality().equals(other.data, data) &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage) &&
+            (identical(other.message, message) || other.message == message) &&
             (identical(other.statusCode, statusCode) ||
                 other.statusCode == statusCode));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(data), errorMessage, statusCode);
+      const DeepCollectionEquality().hash(data), message, statusCode);
 
   @JsonKey(ignore: true)
   @override
@@ -159,14 +156,14 @@ class _$DataResponseImpl<T> extends _DataResponse<T> {
 abstract class _DataResponse<T> extends DataResponse<T> {
   const factory _DataResponse(
       {required final T? data,
-      required final String? errorMessage,
+      required final String? message,
       required final int? statusCode}) = _$DataResponseImpl<T>;
   const _DataResponse._() : super._();
 
   @override
   T? get data;
   @override
-  String? get errorMessage;
+  String? get message;
   @override
   int? get statusCode;
   @override

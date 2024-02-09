@@ -16,7 +16,10 @@ import 'package:observable_flutter/models/data_response.dart' as _i3;
 import 'package:observable_flutter/services/api_service.dart' as _i11;
 import 'package:observable_flutter/services/authentication_service.dart'
     as _i12;
+import 'package:observable_flutter/services/connection_service.dart' as _i16;
 import 'package:observable_flutter/services/data_access_service.dart' as _i14;
+import 'package:observable_flutter/services/data_synchronization_service.dart'
+    as _i17;
 import 'package:observable_flutter/services/local_database_service.dart'
     as _i15;
 import 'package:observable_flutter/services/local_storage_service.dart' as _i2;
@@ -1354,7 +1357,228 @@ class MockLocalStorageService extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockDataAccessService<T> extends _i1.Mock
-    implements _i14.DataAccessService<T> {}
+    implements _i14.DataAccessService<T> {
+  @override
+  _i9.Future<_i3.DataResponse<T?>> delete(
+    String? url,
+    String? id,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #delete,
+          [
+            url,
+            id,
+          ],
+        ),
+        returnValue:
+            _i9.Future<_i3.DataResponse<T?>>.value(_FakeDataResponse_1<T?>(
+          this,
+          Invocation.method(
+            #delete,
+            [
+              url,
+              id,
+            ],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i9.Future<_i3.DataResponse<T?>>.value(_FakeDataResponse_1<T?>(
+          this,
+          Invocation.method(
+            #delete,
+            [
+              url,
+              id,
+            ],
+          ),
+        )),
+      ) as _i9.Future<_i3.DataResponse<T?>>);
+
+  @override
+  _i9.Future<_i3.DataResponse<T?>> insert(
+    String? url,
+    T? body, {
+    T? Function(Map<String, dynamic>)? fromJsonT,
+    Map<String, dynamic>? Function(T)? toJson,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #insert,
+          [
+            url,
+            body,
+          ],
+          {
+            #fromJsonT: fromJsonT,
+            #toJson: toJson,
+          },
+        ),
+        returnValue:
+            _i9.Future<_i3.DataResponse<T?>>.value(_FakeDataResponse_1<T?>(
+          this,
+          Invocation.method(
+            #insert,
+            [
+              url,
+              body,
+            ],
+            {
+              #fromJsonT: fromJsonT,
+              #toJson: toJson,
+            },
+          ),
+        )),
+        returnValueForMissingStub:
+            _i9.Future<_i3.DataResponse<T?>>.value(_FakeDataResponse_1<T?>(
+          this,
+          Invocation.method(
+            #insert,
+            [
+              url,
+              body,
+            ],
+            {
+              #fromJsonT: fromJsonT,
+              #toJson: toJson,
+            },
+          ),
+        )),
+      ) as _i9.Future<_i3.DataResponse<T?>>);
+
+  @override
+  _i9.Future<_i3.DataResponse<List<T>>> list(
+    String? url,
+    List<T> Function(dynamic)? fromJsonT,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #list,
+          [
+            url,
+            fromJsonT,
+          ],
+        ),
+        returnValue: _i9.Future<_i3.DataResponse<List<T>>>.value(
+            _FakeDataResponse_1<List<T>>(
+          this,
+          Invocation.method(
+            #list,
+            [
+              url,
+              fromJsonT,
+            ],
+          ),
+        )),
+        returnValueForMissingStub: _i9.Future<_i3.DataResponse<List<T>>>.value(
+            _FakeDataResponse_1<List<T>>(
+          this,
+          Invocation.method(
+            #list,
+            [
+              url,
+              fromJsonT,
+            ],
+          ),
+        )),
+      ) as _i9.Future<_i3.DataResponse<List<T>>>);
+
+  @override
+  _i9.Future<_i3.DataResponse<T>> show(
+    String? url,
+    String? id,
+    T Function(Map<String, dynamic>)? fromJsonT,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #show,
+          [
+            url,
+            id,
+            fromJsonT,
+          ],
+        ),
+        returnValue:
+            _i9.Future<_i3.DataResponse<T>>.value(_FakeDataResponse_1<T>(
+          this,
+          Invocation.method(
+            #show,
+            [
+              url,
+              id,
+              fromJsonT,
+            ],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i9.Future<_i3.DataResponse<T>>.value(_FakeDataResponse_1<T>(
+          this,
+          Invocation.method(
+            #show,
+            [
+              url,
+              id,
+              fromJsonT,
+            ],
+          ),
+        )),
+      ) as _i9.Future<_i3.DataResponse<T>>);
+
+  @override
+  _i9.Future<_i3.DataResponse<T>> update(
+    String? url,
+    String? id,
+    T? body, {
+    T? Function(Map<String, dynamic>)? fromJsonT,
+    Map<String, dynamic>? Function(T)? toJson,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #update,
+          [
+            url,
+            id,
+            body,
+          ],
+          {
+            #fromJsonT: fromJsonT,
+            #toJson: toJson,
+          },
+        ),
+        returnValue:
+            _i9.Future<_i3.DataResponse<T>>.value(_FakeDataResponse_1<T>(
+          this,
+          Invocation.method(
+            #update,
+            [
+              url,
+              id,
+              body,
+            ],
+            {
+              #fromJsonT: fromJsonT,
+              #toJson: toJson,
+            },
+          ),
+        )),
+        returnValueForMissingStub:
+            _i9.Future<_i3.DataResponse<T>>.value(_FakeDataResponse_1<T>(
+          this,
+          Invocation.method(
+            #update,
+            [
+              url,
+              id,
+              body,
+            ],
+            {
+              #fromJsonT: fromJsonT,
+              #toJson: toJson,
+            },
+          ),
+        )),
+      ) as _i9.Future<_i3.DataResponse<T>>);
+}
 
 /// A class which mocks [LocalDatabaseService].
 ///
@@ -1404,4 +1628,275 @@ class MockLocalDatabaseService<T> extends _i1.Mock
         ),
         returnValueForMissingStub: null,
       );
+
+  @override
+  _i9.Future<_i3.DataResponse<T?>> delete(
+    String? route,
+    String? id,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #delete,
+          [
+            route,
+            id,
+          ],
+        ),
+        returnValue:
+            _i9.Future<_i3.DataResponse<T?>>.value(_FakeDataResponse_1<T?>(
+          this,
+          Invocation.method(
+            #delete,
+            [
+              route,
+              id,
+            ],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i9.Future<_i3.DataResponse<T?>>.value(_FakeDataResponse_1<T?>(
+          this,
+          Invocation.method(
+            #delete,
+            [
+              route,
+              id,
+            ],
+          ),
+        )),
+      ) as _i9.Future<_i3.DataResponse<T?>>);
+
+  @override
+  _i9.Future<_i3.DataResponse<T?>> insert(
+    String? url,
+    T? body, {
+    T? Function(Map<String, dynamic>)? fromJsonT,
+    Map<String, dynamic>? Function(T)? toJson,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #insert,
+          [
+            url,
+            body,
+          ],
+          {
+            #fromJsonT: fromJsonT,
+            #toJson: toJson,
+          },
+        ),
+        returnValue:
+            _i9.Future<_i3.DataResponse<T?>>.value(_FakeDataResponse_1<T?>(
+          this,
+          Invocation.method(
+            #insert,
+            [
+              url,
+              body,
+            ],
+            {
+              #fromJsonT: fromJsonT,
+              #toJson: toJson,
+            },
+          ),
+        )),
+        returnValueForMissingStub:
+            _i9.Future<_i3.DataResponse<T?>>.value(_FakeDataResponse_1<T?>(
+          this,
+          Invocation.method(
+            #insert,
+            [
+              url,
+              body,
+            ],
+            {
+              #fromJsonT: fromJsonT,
+              #toJson: toJson,
+            },
+          ),
+        )),
+      ) as _i9.Future<_i3.DataResponse<T?>>);
+
+  @override
+  _i9.Future<_i3.DataResponse<List<T>>> list(
+    String? url,
+    List<T> Function(dynamic)? fromJsonT,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #list,
+          [
+            url,
+            fromJsonT,
+          ],
+        ),
+        returnValue: _i9.Future<_i3.DataResponse<List<T>>>.value(
+            _FakeDataResponse_1<List<T>>(
+          this,
+          Invocation.method(
+            #list,
+            [
+              url,
+              fromJsonT,
+            ],
+          ),
+        )),
+        returnValueForMissingStub: _i9.Future<_i3.DataResponse<List<T>>>.value(
+            _FakeDataResponse_1<List<T>>(
+          this,
+          Invocation.method(
+            #list,
+            [
+              url,
+              fromJsonT,
+            ],
+          ),
+        )),
+      ) as _i9.Future<_i3.DataResponse<List<T>>>);
+
+  @override
+  _i9.Future<_i3.DataResponse<T>> show(
+    String? url,
+    String? id,
+    T Function(Map<String, dynamic>)? fromJsonT,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #show,
+          [
+            url,
+            id,
+            fromJsonT,
+          ],
+        ),
+        returnValue:
+            _i9.Future<_i3.DataResponse<T>>.value(_FakeDataResponse_1<T>(
+          this,
+          Invocation.method(
+            #show,
+            [
+              url,
+              id,
+              fromJsonT,
+            ],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i9.Future<_i3.DataResponse<T>>.value(_FakeDataResponse_1<T>(
+          this,
+          Invocation.method(
+            #show,
+            [
+              url,
+              id,
+              fromJsonT,
+            ],
+          ),
+        )),
+      ) as _i9.Future<_i3.DataResponse<T>>);
+
+  @override
+  _i9.Future<_i3.DataResponse<T>> update(
+    String? url,
+    String? id,
+    T? body, {
+    T? Function(Map<String, dynamic>)? fromJsonT,
+    Map<String, dynamic>? Function(T)? toJson,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #update,
+          [
+            url,
+            id,
+            body,
+          ],
+          {
+            #fromJsonT: fromJsonT,
+            #toJson: toJson,
+          },
+        ),
+        returnValue:
+            _i9.Future<_i3.DataResponse<T>>.value(_FakeDataResponse_1<T>(
+          this,
+          Invocation.method(
+            #update,
+            [
+              url,
+              id,
+              body,
+            ],
+            {
+              #fromJsonT: fromJsonT,
+              #toJson: toJson,
+            },
+          ),
+        )),
+        returnValueForMissingStub:
+            _i9.Future<_i3.DataResponse<T>>.value(_FakeDataResponse_1<T>(
+          this,
+          Invocation.method(
+            #update,
+            [
+              url,
+              id,
+              body,
+            ],
+            {
+              #fromJsonT: fromJsonT,
+              #toJson: toJson,
+            },
+          ),
+        )),
+      ) as _i9.Future<_i3.DataResponse<T>>);
+}
+
+/// A class which mocks [ConnectionService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockConnectionService extends _i1.Mock implements _i16.ConnectionService {
+  @override
+  _i9.Future<bool> hasConnection() => (super.noSuchMethod(
+        Invocation.method(
+          #hasConnection,
+          [],
+        ),
+        returnValue: _i9.Future<bool>.value(false),
+        returnValueForMissingStub: _i9.Future<bool>.value(false),
+      ) as _i9.Future<bool>);
+
+  @override
+  void connectionSubscribe(dynamic Function(bool)? onChange) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #connectionSubscribe,
+          [onChange],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void dispose() => super.noSuchMethod(
+        Invocation.method(
+          #dispose,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [DataSynchronizationService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockDataSynchronizationService extends _i1.Mock
+    implements _i17.DataSynchronizationService {
+  @override
+  _i9.Future<void> synchronizeData() => (super.noSuchMethod(
+        Invocation.method(
+          #synchronizeData,
+          [],
+        ),
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 }
