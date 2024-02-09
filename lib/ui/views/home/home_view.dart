@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:observable_flutter/ui/views/base_app_bar/base_app_bar_view.dart';
 import 'package:observable_flutter/ui/views/home/home_view.form.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -21,19 +22,7 @@ class HomeView extends StackedView<HomeViewModel> with $HomeView {
     Widget? child,
   ) {
     return Scaffold(
-      appBar: AppBar(
-        // Adding a logout button in the app bar for easy access
-        title: Text(
-            'Welcome, ${viewModel.username ?? 'User'}'), // Display username here
-        actions: [
-          IconButton(
-            icon: Icon(Icons.logout),
-            onPressed: () {
-              viewModel.logout();
-            },
-          ),
-        ],
-      ),
+      appBar: const BaseAppBarView('Datas', null),
       floatingActionButton:
           FloatingActionButton(onPressed: viewModel.fetchNewCategory),
       body: SafeArea(
@@ -63,7 +52,7 @@ class HomeView extends StackedView<HomeViewModel> with $HomeView {
                             return Card(
                                 child: ListTile(
                               title: Text(
-                                date?.datatime ??
+                                "${date?.id}: ${date?.datatime} ${date?.tipo}" ??
                                     '', // Correcting the typo from datatime to datetime
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,

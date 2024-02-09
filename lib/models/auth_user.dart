@@ -5,18 +5,18 @@ class AuthUser {
   final String refresh;
   final String? email;
   final String? displayName;
+  final String? password;
 
   AuthUser({
     required this.access,
     required this.refresh,
     this.email = '',
     this.displayName = '',
+    this.password = '',
   });
 
   factory AuthUser.fromJson(Map<String, dynamic> json) {
-    print(json);
     final jwt = JwtDecoder.decode(json['access']);
-    print(jwt);
     return AuthUser(
       access: json['access'],
       refresh: json['refresh'],

@@ -9,13 +9,15 @@
 import 'package:stacked_services/src/bottom_sheet/bottom_sheet_service.dart';
 import 'package:stacked_services/src/dialog/dialog_service.dart';
 import 'package:stacked_services/src/navigation/navigation_service.dart';
+import 'package:stacked_services/src/snackbar/snackbar_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 
 import '../services/api_service.dart';
 import '../services/authentication_service.dart';
+import '../services/data_access_service.dart';
 import '../services/date_service.dart';
+import '../services/local_database_service.dart';
 import '../services/local_storage_service.dart';
-import '../services/routing_service.dart';
 
 final locator = StackedLocator.instance;
 
@@ -35,5 +37,7 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => DateService());
   locator.registerLazySingleton(() => AuthenticationService());
   locator.registerLazySingleton(() => LocalStorageService());
-  locator.registerLazySingleton(() => RoutingService());
+  locator.registerLazySingleton(() => SnackbarService());
+  locator.registerLazySingleton(() => DataAccessService<dynamic>());
+  locator.registerLazySingleton(() => LocalDatabaseService<dynamic>());
 }

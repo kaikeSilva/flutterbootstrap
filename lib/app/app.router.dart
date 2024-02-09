@@ -5,16 +5,18 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i6;
+import 'package:flutter/material.dart' as _i7;
 import 'package:flutter/material.dart';
-import 'package:observable_flutter/models/date.dart' as _i7;
+import 'package:observable_flutter/models/date.dart' as _i8;
+import 'package:observable_flutter/ui/views/base_app_bar/base_app_bar_view.dart'
+    as _i6;
 import 'package:observable_flutter/ui/views/date_details/date_details_view.dart'
     as _i5;
 import 'package:observable_flutter/ui/views/home/home_view.dart' as _i3;
 import 'package:observable_flutter/ui/views/login/login_view.dart' as _i2;
 import 'package:observable_flutter/ui/views/startup/startup_view.dart' as _i4;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i8;
+import 'package:stacked_services/stacked_services.dart' as _i9;
 
 class Routes {
   static const loginView = '/login-view';
@@ -25,11 +27,14 @@ class Routes {
 
   static const dateDetailsView = '/date-details-view';
 
+  static const baseAppBarView = '/base-app-bar-view';
+
   static const all = <String>{
     loginView,
     homeView,
     startupView,
     dateDetailsView,
+    baseAppBarView,
   };
 }
 
@@ -51,32 +56,44 @@ class StackedRouter extends _i1.RouterBase {
       Routes.dateDetailsView,
       page: _i5.DateDetailsView,
     ),
+    _i1.RouteDef(
+      Routes.baseAppBarView,
+      page: _i6.BaseAppBarView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.LoginView: (data) {
-      return _i6.MaterialPageRoute<dynamic>(
+      return _i7.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.LoginView(),
         settings: data,
       );
     },
     _i3.HomeView: (data) {
-      return _i6.MaterialPageRoute<dynamic>(
+      return _i7.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.HomeView(),
         settings: data,
       );
     },
     _i4.StartupView: (data) {
-      return _i6.MaterialPageRoute<dynamic>(
+      return _i7.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.StartupView(),
         settings: data,
       );
     },
     _i5.DateDetailsView: (data) {
       final args = data.getArgs<DateDetailsViewArguments>(nullOk: false);
-      return _i6.MaterialPageRoute<dynamic>(
+      return _i7.MaterialPageRoute<dynamic>(
         builder: (context) =>
             _i5.DateDetailsView(key: args.key, date: args.date),
+        settings: data,
+      );
+    },
+    _i6.BaseAppBarView: (data) {
+      final args = data.getArgs<BaseAppBarViewArguments>(nullOk: false);
+      return _i7.MaterialPageRoute<dynamic>(
+        builder: (context) =>
+            _i6.BaseAppBarView(args.title, args.actions, key: args.key),
         settings: data,
       );
     },
@@ -95,9 +112,9 @@ class DateDetailsViewArguments {
     required this.date,
   });
 
-  final _i6.Key? key;
+  final _i7.Key? key;
 
-  final _i7.Date date;
+  final _i8.Date date;
 
   @override
   String toString() {
@@ -116,7 +133,37 @@ class DateDetailsViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i8.NavigationService {
+class BaseAppBarViewArguments {
+  const BaseAppBarViewArguments({
+    required this.title,
+    required this.actions,
+    this.key,
+  });
+
+  final String title;
+
+  final List<_i7.Widget>? actions;
+
+  final _i7.Key? key;
+
+  @override
+  String toString() {
+    return '{"title": "$title", "actions": "$actions", "key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant BaseAppBarViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.title == title && other.actions == actions && other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return title.hashCode ^ actions.hashCode ^ key.hashCode;
+  }
+}
+
+extension NavigatorStateExtension on _i9.NavigationService {
   Future<dynamic> navigateToLoginView([
     int? routerId,
     bool preventDuplicates = true,
@@ -160,8 +207,8 @@ extension NavigatorStateExtension on _i8.NavigationService {
   }
 
   Future<dynamic> navigateToDateDetailsView({
-    _i6.Key? key,
-    required _i7.Date date,
+    _i7.Key? key,
+    required _i8.Date date,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -170,6 +217,25 @@ extension NavigatorStateExtension on _i8.NavigationService {
   }) async {
     return navigateTo<dynamic>(Routes.dateDetailsView,
         arguments: DateDetailsViewArguments(key: key, date: date),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToBaseAppBarView({
+    required String title,
+    required List<_i7.Widget>? actions,
+    _i7.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.baseAppBarView,
+        arguments:
+            BaseAppBarViewArguments(title: title, actions: actions, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -219,8 +285,8 @@ extension NavigatorStateExtension on _i8.NavigationService {
   }
 
   Future<dynamic> replaceWithDateDetailsView({
-    _i6.Key? key,
-    required _i7.Date date,
+    _i7.Key? key,
+    required _i8.Date date,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -229,6 +295,25 @@ extension NavigatorStateExtension on _i8.NavigationService {
   }) async {
     return replaceWith<dynamic>(Routes.dateDetailsView,
         arguments: DateDetailsViewArguments(key: key, date: date),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithBaseAppBarView({
+    required String title,
+    required List<_i7.Widget>? actions,
+    _i7.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return replaceWith<dynamic>(Routes.baseAppBarView,
+        arguments:
+            BaseAppBarViewArguments(title: title, actions: actions, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

@@ -146,13 +146,14 @@ class __$$DateImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$DateImpl implements _Date {
+class _$DateImpl extends _Date {
   _$DateImpl(
       {required this.id,
       required this.datatime,
       required this.tipo,
       required this.object_id,
-      required this.content_type});
+      required this.content_type})
+      : super._();
 
   factory _$DateImpl.fromJson(Map<String, dynamic> json) =>
       _$$DateImplFromJson(json);
@@ -207,13 +208,14 @@ class _$DateImpl implements _Date {
   }
 }
 
-abstract class _Date implements Date {
+abstract class _Date extends Date {
   factory _Date(
       {required final int? id,
       required final String? datatime,
       required final String? tipo,
       required final int? object_id,
       required final int? content_type}) = _$DateImpl;
+  _Date._() : super._();
 
   factory _Date.fromJson(Map<String, dynamic> json) = _$DateImpl.fromJson;
 

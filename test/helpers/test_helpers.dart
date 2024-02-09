@@ -5,7 +5,8 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:observable_flutter/services/api_service.dart';
 import 'package:observable_flutter/services/authentication_service.dart';
 import 'package:observable_flutter/services/local_storage_service.dart';
-import 'package:observable_flutter/services/routing_service.dart';
+import 'package:observable_flutter/services/data_access_service.dart';
+import 'package:observable_flutter/services/local_database_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -17,7 +18,8 @@ import 'test_helpers.mocks.dart';
   MockSpec<ApiService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<AuthenticationService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<LocalStorageService>(onMissingStub: OnMissingStub.returnDefault),
-  MockSpec<RoutingService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<DataAccessService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<LocalDatabaseService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -27,7 +29,8 @@ void registerServices() {
   getAndRegisterApiService();
   getAndRegisterAuthenticationService();
   getAndRegisterLocalStorageService();
-  getAndRegisterRoutingService();
+  getAndRegisterDataAccessService();
+  getAndRegisterLocalDatabaseService();
 // @stacked-mock-register
 }
 
@@ -102,10 +105,17 @@ MockLocalStorageService getAndRegisterLocalStorageService() {
   return service;
 }
 
-MockRoutingService getAndRegisterRoutingService() {
-  _removeRegistrationIfExists<RoutingService>();
-  final service = MockRoutingService();
-  locator.registerSingleton<RoutingService>(service);
+MockDataAccessService getAndRegisterDataAccessService() {
+  _removeRegistrationIfExists<DataAccessService>();
+  final service = MockDataAccessService();
+  locator.registerSingleton<DataAccessService>(service);
+  return service;
+}
+
+MockLocalDatabaseService getAndRegisterLocalDatabaseService() {
+  _removeRegistrationIfExists<LocalDatabaseService>();
+  final service = MockLocalDatabaseService();
+  locator.registerSingleton<LocalDatabaseService>(service);
   return service;
 }
 // @stacked-mock-create

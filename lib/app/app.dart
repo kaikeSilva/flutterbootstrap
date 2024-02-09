@@ -10,7 +10,9 @@ import 'package:observable_flutter/services/api_service.dart';
 import 'package:observable_flutter/ui/views/login/login_view.dart';
 import 'package:observable_flutter/services/authentication_service.dart';
 import 'package:observable_flutter/services/local_storage_service.dart';
-import 'package:observable_flutter/services/routing_service.dart';
+import 'package:observable_flutter/ui/views/base_app_bar/base_app_bar_view.dart';
+import 'package:observable_flutter/services/data_access_service.dart';
+import 'package:observable_flutter/services/local_database_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -19,6 +21,7 @@ import 'package:observable_flutter/services/routing_service.dart';
     MaterialRoute(page: HomeView),
     MaterialRoute(page: StartupView),
     MaterialRoute(page: DateDetailsView),
+    MaterialRoute(page: BaseAppBarView),
 // @stacked-route
   ],
   dependencies: [
@@ -29,7 +32,9 @@ import 'package:observable_flutter/services/routing_service.dart';
     LazySingleton(classType: DateService),
     LazySingleton(classType: AuthenticationService),
     LazySingleton(classType: LocalStorageService),
-    LazySingleton(classType: RoutingService),
+    LazySingleton(classType: SnackbarService),
+    LazySingleton(classType: DataAccessService),
+    LazySingleton(classType: LocalDatabaseService),
 // @stacked-service
   ],
   bottomsheets: [

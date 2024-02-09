@@ -1,23 +1,24 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:observable_flutter/models/data_response.dart';
 
-part 'api_response.freezed.dart';
+part 'data_response.freezed.dart';
 
 typedef JsonToT<T> = T Function(Map<String, dynamic>);
 
 @freezed
-class ApiResponse<T> with _$ApiResponse<T> {
-  const ApiResponse._();
+class DataResponse<T> with _$DataResponse<T> {
+  const DataResponse._();
 
-  const factory ApiResponse({
+  const factory DataResponse({
     required T? data,
     required String? errorMessage,
     required int? statusCode,
-  }) = _ApiResponse<T>;
+  }) = _DataResponse<T>;
 
   // Custom fromJson method
-  factory ApiResponse.fromJson(
+  factory DataResponse.fromJson(
       Map<String, dynamic> json, JsonToT<T> fromJsonT) {
-    return ApiResponse<T>(
+    return DataResponse<T>(
       data: fromJsonT(json['data']),
       errorMessage: json['errorMessage'] as String?,
       statusCode: json['statusCode'] as int?,

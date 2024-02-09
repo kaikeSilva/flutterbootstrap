@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'api_response.dart';
+part of 'data_response.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,29 +15,29 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ApiResponse<T> {
+mixin _$DataResponse<T> {
   T? get data => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
   int? get statusCode => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ApiResponseCopyWith<T, ApiResponse<T>> get copyWith =>
+  $DataResponseCopyWith<T, DataResponse<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ApiResponseCopyWith<T, $Res> {
-  factory $ApiResponseCopyWith(
-          ApiResponse<T> value, $Res Function(ApiResponse<T>) then) =
-      _$ApiResponseCopyWithImpl<T, $Res, ApiResponse<T>>;
+abstract class $DataResponseCopyWith<T, $Res> {
+  factory $DataResponseCopyWith(
+          DataResponse<T> value, $Res Function(DataResponse<T>) then) =
+      _$DataResponseCopyWithImpl<T, $Res, DataResponse<T>>;
   @useResult
   $Res call({T? data, String? errorMessage, int? statusCode});
 }
 
 /// @nodoc
-class _$ApiResponseCopyWithImpl<T, $Res, $Val extends ApiResponse<T>>
-    implements $ApiResponseCopyWith<T, $Res> {
-  _$ApiResponseCopyWithImpl(this._value, this._then);
+class _$DataResponseCopyWithImpl<T, $Res, $Val extends DataResponse<T>>
+    implements $DataResponseCopyWith<T, $Res> {
+  _$DataResponseCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -69,22 +69,22 @@ class _$ApiResponseCopyWithImpl<T, $Res, $Val extends ApiResponse<T>>
 }
 
 /// @nodoc
-abstract class _$$ApiResponseImplCopyWith<T, $Res>
-    implements $ApiResponseCopyWith<T, $Res> {
-  factory _$$ApiResponseImplCopyWith(_$ApiResponseImpl<T> value,
-          $Res Function(_$ApiResponseImpl<T>) then) =
-      __$$ApiResponseImplCopyWithImpl<T, $Res>;
+abstract class _$$DataResponseImplCopyWith<T, $Res>
+    implements $DataResponseCopyWith<T, $Res> {
+  factory _$$DataResponseImplCopyWith(_$DataResponseImpl<T> value,
+          $Res Function(_$DataResponseImpl<T>) then) =
+      __$$DataResponseImplCopyWithImpl<T, $Res>;
   @override
   @useResult
   $Res call({T? data, String? errorMessage, int? statusCode});
 }
 
 /// @nodoc
-class __$$ApiResponseImplCopyWithImpl<T, $Res>
-    extends _$ApiResponseCopyWithImpl<T, $Res, _$ApiResponseImpl<T>>
-    implements _$$ApiResponseImplCopyWith<T, $Res> {
-  __$$ApiResponseImplCopyWithImpl(
-      _$ApiResponseImpl<T> _value, $Res Function(_$ApiResponseImpl<T>) _then)
+class __$$DataResponseImplCopyWithImpl<T, $Res>
+    extends _$DataResponseCopyWithImpl<T, $Res, _$DataResponseImpl<T>>
+    implements _$$DataResponseImplCopyWith<T, $Res> {
+  __$$DataResponseImplCopyWithImpl(
+      _$DataResponseImpl<T> _value, $Res Function(_$DataResponseImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -94,7 +94,7 @@ class __$$ApiResponseImplCopyWithImpl<T, $Res>
     Object? errorMessage = freezed,
     Object? statusCode = freezed,
   }) {
-    return _then(_$ApiResponseImpl<T>(
+    return _then(_$DataResponseImpl<T>(
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -113,8 +113,8 @@ class __$$ApiResponseImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$ApiResponseImpl<T> extends _ApiResponse<T> {
-  const _$ApiResponseImpl(
+class _$DataResponseImpl<T> extends _DataResponse<T> {
+  const _$DataResponseImpl(
       {required this.data,
       required this.errorMessage,
       required this.statusCode})
@@ -129,14 +129,14 @@ class _$ApiResponseImpl<T> extends _ApiResponse<T> {
 
   @override
   String toString() {
-    return 'ApiResponse<$T>(data: $data, errorMessage: $errorMessage, statusCode: $statusCode)';
+    return 'DataResponse<$T>(data: $data, errorMessage: $errorMessage, statusCode: $statusCode)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ApiResponseImpl<T> &&
+            other is _$DataResponseImpl<T> &&
             const DeepCollectionEquality().equals(other.data, data) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
@@ -151,17 +151,17 @@ class _$ApiResponseImpl<T> extends _ApiResponse<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ApiResponseImplCopyWith<T, _$ApiResponseImpl<T>> get copyWith =>
-      __$$ApiResponseImplCopyWithImpl<T, _$ApiResponseImpl<T>>(
+  _$$DataResponseImplCopyWith<T, _$DataResponseImpl<T>> get copyWith =>
+      __$$DataResponseImplCopyWithImpl<T, _$DataResponseImpl<T>>(
           this, _$identity);
 }
 
-abstract class _ApiResponse<T> extends ApiResponse<T> {
-  const factory _ApiResponse(
+abstract class _DataResponse<T> extends DataResponse<T> {
+  const factory _DataResponse(
       {required final T? data,
       required final String? errorMessage,
-      required final int? statusCode}) = _$ApiResponseImpl<T>;
-  const _ApiResponse._() : super._();
+      required final int? statusCode}) = _$DataResponseImpl<T>;
+  const _DataResponse._() : super._();
 
   @override
   T? get data;
@@ -171,6 +171,6 @@ abstract class _ApiResponse<T> extends ApiResponse<T> {
   int? get statusCode;
   @override
   @JsonKey(ignore: true)
-  _$$ApiResponseImplCopyWith<T, _$ApiResponseImpl<T>> get copyWith =>
+  _$$DataResponseImplCopyWith<T, _$DataResponseImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
